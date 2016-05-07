@@ -2,11 +2,14 @@
  * @fileOverview
  * @author caozilu
  */
-myApp.controller('RegistrationController', ['$scope', function($scope) {
+myApp.controller('RegistrationController', ['$scope', 'Authentication', function($scope, Authentication) {
   $scope.login = function() {
-    $scope.message = '欢迎 ' + $scope.user.email + ' 回到我的应用';
+    Authentication.login($scope.user);
+  };
+  $scope.logout = function() {
+    Authentication.logout($scope.user);
   };
   $scope.register = function() {
-    $scope.message = '欢迎 ' + $scope.user.email + ' 来到我的应用';
+    Authentication.register($scope.user);
   };
 }]);
