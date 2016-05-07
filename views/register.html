@@ -1,0 +1,19 @@
+<section class="card register">
+  <form name="myform" ng-submit="register()">
+
+    <div class="textintro">
+      <h1>注册</h1>
+      <p>注册后进入新的世界!</p>
+      <p ng-if="message">{{message}}</p>
+    </div>
+
+    <fieldset>
+      <input type="text" placeholder="姓名" ng-model="user.name" required>
+      <input type="email" placeholder="邮箱" ng-model="user.email" required>
+      <input type="password" placeholder="密码" ng-model="user.password" required>
+    </fieldset>
+
+    <button type="submit" class="btn" ng-disabled="myform.$invalid">注册</button>
+    <p>或 <a href="#/login">登录</a></p>
+  </form>
+</section>
