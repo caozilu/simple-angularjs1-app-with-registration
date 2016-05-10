@@ -1,0 +1,14 @@
+<div class="card checkinsList">
+  <h1>报名列表</h1>
+  <p>已报名此会议的用户</p>
+  <ul class="userlist cf">
+    <li ng-repeat="checkin in checkins">
+      <div class="checkin">
+        <div class="info">
+          <h2>{{checkin.name}}</h2>
+          <div class="date">{{checkin.date | date: 'yyyy-MM-dd h:mm a'}}</div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

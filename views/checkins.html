@@ -1,0 +1,21 @@
+<section class="card checkins">
+  <form name="myform" ng-submit="addCheckin()">
+
+    <div class="textintro">
+      <h1>报名</h1>
+      <p>填表以报名或
+        <a href="#/meetings">返回会议列表</a>
+      </p>
+      <p class="error formerror" ng-if="message">{{message}}</p>
+    </div>
+
+    <fieldset>
+      <input type="text" placeholder="姓名" ng-model="user.name" required>
+      <input type="email" placeholder="邮箱" ng-model="user.email" required>
+      <input type="password" placeholder="密码" ng-model="user.password" required>
+    </fieldset>
+
+    <button type="submit" class="btn" ng-disabled="myform.$invalid">报名</button>
+    <p>或 <a href="#/login">登录</a></p>
+  </form>
+</section>

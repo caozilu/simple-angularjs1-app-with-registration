@@ -1,5 +1,8 @@
-  <div class="branding"><a href="#/">AngularJS1小应用</a></div>
+  <div class="branding"><a href="#/">AngularJS</a></div>
   <ul>
+    <li><a ng-if="currentUser" href="#/meetings">会议
+    <span ng-if="howManyMeetings" class="badge">{{howManyMeetings}}</span>
+    </a></li>
     <li><a ng-if="!currentUser" href="#/login">登录</a></li>
     <li><a ng-if="!currentUser" href="#/register">注册</a></li>
   </ul>

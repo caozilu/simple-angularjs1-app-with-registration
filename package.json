@@ -4,23 +4,27 @@
   "description": "A simple AngularJS1 application with registration",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "open http://localhost:3333 & httpster -p 3333"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/caozilu/simple-angularjs1-app-with-registration.git"
   },
   "keywords": [
-    "AngularJS1/Firebase"
+    "AngularJS1",
+    "Firebase"
   ],
   "author": "caozilu",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/caozilu/simple-angularjs1-app-with-registration/issues"
   },
   "homepage": "https://github.com/caozilu/simple-angularjs1-app-with-registration#readme",
   "dependencies": {
     "angular": "^1.5.5",
+    "angular-animate": "^1.5.5",
+    "angular-route": "^1.5.5",
     "angularfire": "^1.2.0",
     "firebase": "^2.4.2"
   }
