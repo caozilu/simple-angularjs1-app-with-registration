@@ -24,17 +24,41 @@
     <label for="dirdescending">降序</label>
   </div>
 
+  <div class="buttons cf" ng-if="currentUser">
+    <button ng-hide="recordId" class="btn btn-pick" ng-click="pickRandom()">随机选择</button>
+    <button ng-show="recordId" class="btn btn-pick" ng-click="recordId=''">重置</button>
+  </div>
+
   <ul class="userlist cf">
-    <li ng-repeat="checkin in checkins | orderBy : order: direction| filter: query">
+    <li ng-class="checkin.userState" ng-repeat="checkin in checkins | orderBy : order:direction | filter: {$id:recordId, $:query}">
       <div class="checkin">
         <div class="buttons" ng-if="currentUser">
           <button class="btn btn-delete tooltip" ng-click="deleteCheckin(checkin.$id)">
             <span>删除此报名?</span>
           </button>
+          <button class="btn btn-love tooltip" ng-click="showLove(checkin)">
+            <span>赞赏</span>
+          </button>
         </div>
         <div class="info">
           <h2>{{checkin.name}}</h2>
           <div class="date">{{checkin.date | date: 'yyyy-MM-dd h:mm a'}}</div>
+        </div>
+        <div class="showcheckins" ng-if="checkin.show">
+          <form class="cf" name="myform" ng-submit="giveLove(checkin, checkin.giftText)">
+            <input type="text" ng-model="checkin.giftText" placeholder="给ta点赞赏吧" required>
+            <button type="submit" class="btn" ng-disabled="myform.$invalid">+</button>
+          </form>
+          <ul class="awardslist cf">
+            <li class="cf" ng-repeat="(key, award) in checkin.awards">
+              <div class="award">{{award.name}}</div>
+              <div ng-if="currentUser" class="buttons">
+                <button class="btn btn-delete award tooltip" ng-click="deleteLove(checkin.$id, key)">
+                  <span>删除此赞赏?</span>
+                </button>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </li>

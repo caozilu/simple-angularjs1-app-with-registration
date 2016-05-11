@@ -16,6 +16,7 @@ myApp.controller('CheckInsController', ['$scope', '$rootScope', '$location', '$f
     $scope.order = 'name';
     $scope.direction = null;
     $scope.query = '';
+    $scope.recordId = '';
 
     $scope.addCheckin = function() {
       checkinsList.$add({
@@ -32,5 +33,34 @@ myApp.controller('CheckInsController', ['$scope', '$rootScope', '$location', '$f
       var record = $firebaseObject(refDel);
       record.$remove(id);
     };
+
+    $scope.pickRandom = function() {
+      var whichRecord = Math.round(Math.random()*(checkinsList.length-1));
+      $scope.recordId = checkinsList.$keyAt(whichRecord);
+    };
+
+    $scope.showLove = function(myChekin) {
+      myChekin.show = !myChekin.show;
+      if (myChekin.userState == 'expanded') {
+        myChekin.userState = '';
+      } else {
+        myChekin.userState = 'expanded';
+      }
+    };
+
+    $scope.giveLove = function(mycheckin, myGift){
+      var refLove = new Firebase(FIREBASE_URL + 'users/' + $scope.whichuser + '/meetings/' + $scope.whichmeeting + '/checkins/' + mycheckin.$id + '/awards');
+      var checkinsArray = $firebaseArray(refLove);
+      checkinsArray.$add({
+        name: myGift,
+        date: Firebase.ServerValue.TIMESTAMP
+      });
+    };
+
+    $scope.deleteLove = function(checkinId, award){
+      var refLove = new Firebase(FIREBASE_URL + 'users/' + $scope.whichuser + '/meetings/' + $scope.whichmeeting + '/checkins/' + checkinId + '/awards');
+      var record = $firebaseObject(refLove);
+      record.$remove(award);
+    }
 
   }]);
